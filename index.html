@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM — Fine Watchmaking Since 1847</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="app.js" defer></script>
+
+    <script src="script.js" defer></script>
+
+    <script src="translate-init.js" defer></script>
+
+    <script src="i18n-system.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="bestsellers.html">Best Sellers</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="nav-search">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    style="color:var(--silver)">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" placeholder="Search timepieces...">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <div class="lang-current">
+                    <span class="lang-flag">EN</span>
+                    <span class="lang-code">EN</span>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option active" data-lang="en">
+                        <span class="lang-flag">EN</span>
+                        <span class="lang-name">English</span>
+                    </div>
+                    <div class="lang-option" data-lang="es">
+                        <span class="lang-flag">ES</span>
+                        <span class="lang-name">Español</span>
+                    </div>
+                    <div class="lang-option" data-lang="de">
+                        <span class="lang-flag">DE</span>
+                        <span class="lang-name">Deutsch</span>
+                    </div>
+                    <div class="lang-option" data-lang="fr">
+                        <span class="lang-flag">FR</span>
+                        <span class="lang-name">Français</span>
+                    </div>
+                    <div class="lang-option" data-lang="zh">
+                        <span class="lang-flag">KO</span>
+                        <span class="lang-name">中文</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-icon" title="Favorites">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </button>
+            <button class="nav-icon" style="position:relative" title="Shopping Cart">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <span class="cart-badge" style="display:none">0</span>
+            </button>
+
+            <!-- Auth Buttons (shown when logged out) -->
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+                <button class="auth-btn primary" onclick="openModal('registerModal')">Register</button>
+            </div>
+
+            <!-- User Menu (shown when logged in) -->
+            <div class="user-menu">
+                <div class="user-dropdown">
+                    <div class="user-avatar">A</div>
+                    <div class="user-dropdown-menu">
+                        <a href="#">My Account</a>
+                        <a href="#" onclick="openModal('favoritesModal')">Favorites</a>
+                        <a href="#">Order History</a>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+                <span class="user-name">Guest</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+
+        <!-- Decorative Watch Illustration -->
+        <div class="hero-watch-visual">
+            <div class="watch-circle">
+                <div class="watch-lugs">
+                    <div class="lug lug-tl"></div>
+                    <div class="lug lug-tr"></div>
+                    <div class="lug lug-bl"></div>
+                    <div class="lug lug-br"></div>
+                </div>
+                <div class="watch-face">
+                    <div class="watch-dial">
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(0deg);"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(30deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(60deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(90deg);"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(120deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(150deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(180deg);"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(210deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(240deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(270deg);"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(300deg);height:6px"></div>
+                        <div class="watch-marker" style="transform:translateX(-50%) rotate(330deg);height:6px"></div>
+                        <div class="watch-brand-text">AURUM</div>
+                        <div class="watch-hand hand-hour"></div>
+                        <div class="watch-hand hand-min"></div>
+                        <div class="watch-hand hand-sec"></div>
+                        <div class="watch-center"></div>
+                        <div class="watch-subdial"></div>
+                    </div>
+                </div>
+                <div class="watch-crown"></div>
+                <div class="watch-reflection"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-label">Maison Aurum — 1847</div>
+            <h1 class="hero-title">Time is the<br>only true <em>luxury</em></h1>
+            <p class="hero-subtitle">Handcrafted in Geneva · 18K Gold & Platinum · Swiss Mechanical</p>
+            <div class="hero-ctas">
+                <a href="collections.html" class="btn-primary"><span>Explore Collections</span> →</a>
+                <a href="about.html" class="btn-ghost">Our Heritage</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            Scroll
+        </div>
+    </section>
+
+    <!-- Marquee Strip -->
+    <div class="marquee-strip">
+        <div class="marquee-inner">
+            <div class="marquee-item">Free Worldwide Shipping</div>
+            <div class="marquee-item">5-Year Movement Warranty</div>
+            <div class="marquee-item">Certified Swiss Made</div>
+            <div class="marquee-item">Complimentary Engraving</div>
+            <div class="marquee-item">White Glove Delivery</div>
+            <div class="marquee-item">Lifetime Servicing Program</div>
+            <div class="marquee-item">Free Worldwide Shipping</div>
+            <div class="marquee-item">5-Year Movement Warranty</div>
+            <div class="marquee-item">Certified Swiss Made</div>
+            <div class="marquee-item">Complimentary Engraving</div>
+            <div class="marquee-item">White Glove Delivery</div>
+            <div class="marquee-item">Lifetime Servicing Program</div>
+        </div>
+    </div>
+
+    <!-- Featured Products Preview -->
+    <section class="featured">
+        <div class="featured-header">
+            <div>
+                <div class="section-label">Curated Selection</div>
+                <h2 class="section-title">Exceptional <em>Timepieces</em></h2>
+                <div class="divider"></div>
+            </div>
+            <a href="bestsellers.html" class="btn-ghost" style="padding:12px 30px">View All →</a>
+        </div>
+        <div class="products-grid">
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top"></div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #3a2f18, #1a1205, #080808)"></div>
+                        <div class="pw-strap pw-strap-bot"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Royal Perpetual</div>
+                    <div class="product-name">Complication I</div>
+                    <div class="product-ref">Ref. AUR-2024-RP-01 · 42mm</div>
+                    <div class="product-price">
+                        <span>€ 48,500</span>
+                        <span style="font-size:0.65rem;color:var(--silver)">18K Rose Gold</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn" title="Add to Wishlist">♡</div>
+                    <div class="action-btn" title="Quick View">⊙</div>
+                    <div class="action-btn" title="Add to Cart">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-img" style="aspect-ratio:3/4">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0d1520, #1a2535)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #1a2535, #080d12, #080808);border-color:rgba(100,160,220,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0d1520, #1a2535)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Nautique Series</div>
+                    <div class="product-name">Depth Master II</div>
+                    <div class="product-ref">Ref. AUR-2024-NM-07 · 40mm</div>
+                    <div class="product-price">
+                        <span>€ 36,200</span>
+                        <span style="font-size:0.65rem;color:var(--silver)">Platinum Case</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn" title="Add to Wishlist">♡</div>
+                    <div class="action-btn" title="Quick View">⊙</div>
+                    <div class="action-btn" title="Add to Cart">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge"
+                    style="background:transparent;border:1px solid var(--gold);color:var(--gold)">Limited</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #1a0a0a, #2d1212)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #2d1a1a, #120808, #080808);border-color:rgba(180,80,80,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #1a0a0a, #2d1212)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Tourbillon Supremo</div>
+                    <div class="product-name">Eternal Rouge</div>
+                    <div class="product-ref">Ref. AUR-2024-TS-99 · 38mm · 50 pcs</div>
+                    <div class="product-price">
+                        <span>€ 124,000</span>
+                        <span style="font-size:0.65rem;color:rgba(180,80,80,0.8)">Sold Out</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn" title="Add to Wishlist">♡</div>
+                    <div class="action-btn" title="Quick View">⊙</div>
+                    <div class="action-btn" style="opacity:0.4;cursor:not-allowed">⊘</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Collections Preview -->
+    <section class="collections" id="collections">
+        <div style="max-width:600px;margin-bottom:60px">
+            <div class="section-label">Curated Universes</div>
+            <h2 class="section-title">The <em>Collections</em></h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Four distinct universes, one singular commitment to excellence.</p>
+        </div>
+        <div class="collections-grid">
+            <a href="collections.html#gentlemen" class="coll-card fade-up">
+                <div class="coll-bg coll-bg-1"></div>
+                <div class="coll-overlay"></div>
+                <div class="coll-visual">
+                    <div class="coll-watch-sm"></div>
+                </div>
+                <div class="coll-info">
+                    <div class="coll-cat">Heritage · Classic</div>
+                    <div class="coll-name">Gentlemen's Collection</div>
+                    <div class="coll-count">24 Timepieces</div>
+                </div>
+                <div class="coll-arrow">→</div>
+            </a>
+            <a href="collections.html#women" class="coll-card fade-up">
+                <div class="coll-bg coll-bg-2"></div>
+                <div class="coll-overlay"></div>
+                <div class="coll-visual" style="transform:translate(-50%, -55%)">
+                    <div class="coll-watch-sm"
+                        style="background:radial-gradient(circle at 35% 35%, #2a1a30, #080808);border-color:rgba(180,140,220,0.3)">
+                    </div>
+                </div>
+                <div class="coll-info">
+                    <div class="coll-cat">Élégance Féminine</div>
+                    <div class="coll-name">Dame Lumière</div>
+                    <div class="coll-count">18 Timepieces</div>
+                </div>
+                <div class="coll-arrow">→</div>
+            </a>
+            <a href="collections.html#limited" class="coll-card fade-up">
+                <div class="coll-bg coll-bg-3"></div>
+                <div class="coll-overlay"></div>
+                <div class="coll-visual" style="transform:translate(-50%, -55%)">
+                    <div class="coll-watch-sm"
+                        style="background:radial-gradient(circle at 35% 35%, #0d1a2a, #080808);border-color:rgba(80,140,200,0.3)">
+                    </div>
+                </div>
+                <div class="coll-info">
+                    <div class="coll-cat">Rare · Extraordinary</div>
+                    <div class="coll-name">Limited Editions</div>
+                    <div class="coll-count">7 Exclusive Pieces</div>
+                </div>
+                <div class="coll-arrow">→</div>
+            </a>
+            <a href="collections.html#smart" class="coll-card fade-up">
+                <div class="coll-bg coll-bg-4"></div>
+                <div class="coll-overlay"></div>
+                <div class="coll-visual" style="transform:translate(-50%, -55%)">
+                    <div class="coll-watch-sm"
+                        style="background:radial-gradient(circle at 35% 35%, #1a1a1a, #080808);border-color:rgba(150,200,150,0.2)">
+                    </div>
+                </div>
+                <div class="coll-info">
+                    <div class="coll-cat">Innovation · Connected</div>
+                    <div class="coll-name">Smart Luxury</div>
+                    <div class="coll-count">12 Timepieces</div>
+                </div>
+                <div class="coll-arrow">→</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="about-inner">
+            <div class="about-visual">
+                <div class="about-frame">
+                    <div class="about-watch-big"></div>
+                </div>
+                <div class="about-frame-offset"></div>
+                <div class="about-year">1847</div>
+            </div>
+            <div class="about-text">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-title">A Legacy<br>of <em>Time</em></h2>
+                <div class="divider"></div>
+                <p>Founded in 1847 by master watchmaker Édouard Aurum in the heart of Geneva, the Maison has dedicated
+                    over seventeen decades to the singular pursuit of perfect timekeeping.</p>
+                <p>Each movement is constructed entirely in-house, from the drawing of the first blueprint to the final
+                    regulation by our master watchmakers.</p>
+                <a href="about.html" class="btn-ghost" style="margin-top:32px;display:inline-flex">Discover Our Heritage
+                    →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <div class="newsletter-inner">
+            <div class="section-label" style="justify-content:center">Stay Informed</div>
+            <h2 class="section-title" style="text-align:center">Join the <em>Circle</em></h2>
+            <p style="font-size:0.72rem;color:var(--silver);line-height:2;letter-spacing:0.05em">Receive exclusive
+                previews, private event invitations, and the annual Aurum journal.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your Email Address">
+                <button class="newsletter-btn">Subscribe</button>
+            </div>
+            <div class="newsletter-note">Discretion guaranteed. We never share your information.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+                <p class="footer-tagline">Maison Aurum — crafting extraordinary timepieces in Geneva since 1847.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn" title="Instagram">IG</a>
+                    <a href="#" class="social-btn" title="Facebook">FB</a>
+                    <a href="#" class="social-btn" title="Twitter">TW</a>
+                    <a href="#" class="social-btn" title="LinkedIn">LN</a>
+                    <a href="#" class="social-btn" title="YouTube">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="collections.html#gentlemen">Gentlemen's</a></li>
+                    <li><a href="collections.html#women">Dame Lumière</a></li>
+                    <li><a href="collections.html#limited">Limited Editions</a></li>
+                    <li><a href="collections.html#smart">Smart Luxury</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="#">Bespoke Engraving</a></li>
+                    <li><a href="#">Watch Servicing</a></li>
+                    <li><a href="#">Authenticity Cert.</a></li>
+                    <li><a href="contact.html">Private Consultations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="about.html">Our Heritage</a></li>
+                    <li><a href="about.html#atelier">Atelier Tour</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-legal">© 2024 Maison Aurum SA, Geneva · All rights reserved · Privacy Policy · Terms &
+                Conditions</div>
+            <div class="payment-icons">
+                <div class="pay-icon">VISA</div>
+                <div class="pay-icon">MC</div>
+                <div class="pay-icon">AMEX</div>
+                <div class="pay-icon">PayPal</div>
+                <div class="pay-icon">Wire</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('loginModal')">×</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome Back</h2>
+                <p class="modal-subtitle">Login to access your account</p>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Login</button>
+                </form>
+                <div class="auth-divider">or</div>
+                <div class="auth-switch">
+                    Don't have an account? <a onclick="closeModal('loginModal'); openModal('registerModal')">Create
+                        one</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('registerModal')">×</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Join Aurum</h2>
+                <p class="modal-subtitle">Create your account</p>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="registerForm">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" placeholder="Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Minimum 8 characters" required
+                            minlength="8">
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                </form>
+                <div class="auth-divider">or</div>
+                <div class="auth-switch">
+                    Already have an account? <a onclick="closeModal('registerModal'); openModal('loginModal')">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('cartModal')">×</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Shopping Cart</h2>
+                <p class="modal-subtitle">Review your selected timepieces</p>
+            </div>
+            <div class="modal-body">
+                <div class="empty-state" id="emptyCart">
+                    <div class="empty-state-icon">🛍️</div>
+                    <div class="empty-state-text">Your cart is empty</div>
+                    <div class="empty-state-subtext">Discover our exceptional timepieces</div>
+                </div>
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-total">
+                    <div class="cart-total-label">Total</div>
+                    <div class="cart-total-amount" id="cartTotal">€ 0</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost" onclick="closeModal('cartModal')">Continue Shopping</button>
+                <button class="btn-primary" id="checkoutBtn"><span>Proceed to Checkout</span> →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div class="modal-overlay" id="favoritesModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('favoritesModal')">×</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Your Favorites</h2>
+                <p class="modal-subtitle">Your curated collection of timepieces</p>
+            </div>
+            <div class="modal-body">
+                <div class="empty-state" id="emptyFavorites">
+                    <div class="empty-state-icon">♡</div>
+                    <div class="empty-state-text">No favorites yet</div>
+                    <div class="empty-state-subtext">Start building your wishlist</div>
+                </div>
+                <div class="favorites-items" id="favoritesItems"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

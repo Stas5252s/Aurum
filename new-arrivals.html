@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals — AURUM Fine Watchmaking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="app.js" defer></script>
+
+    <script src="script.js" defer></script>
+
+    <script src="translate-init.js" defer></script>
+
+    <script src="i18n-system.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="bestsellers.html">Best Sellers</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="nav-search">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    style="color:var(--silver)">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" placeholder="Search timepieces...">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <div class="lang-current">
+                    <span class="lang-flag">EN</span>
+                    <span class="lang-code">EN</span>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option active" data-lang="en">
+                        <span class="lang-flag">EN</span>
+                        <span class="lang-name">English</span>
+                    </div>
+                    <div class="lang-option" data-lang="ru">
+                        <span class="lang-flag">RU</span>
+                        <span class="lang-name">Русский</span>
+                    </div>
+                    <div class="lang-option" data-lang="es">
+                        <span class="lang-flag">ES</span>
+                        <span class="lang-name">Español</span>
+                    </div>
+                    <div class="lang-option" data-lang="fr">
+                        <span class="lang-flag">FR</span>
+                        <span class="lang-name">Français</span>
+                    </div>
+                    <div class="lang-option" data-lang="de">
+                        <span class="lang-flag">DE</span>
+                        <span class="lang-name">Deutsch</span>
+                    </div>
+                    <div class="lang-option" data-lang="zh">
+                        <span class="lang-flag">KO</span>
+                        <span class="lang-name">中文</span>
+                    </div>
+                    <div class="lang-option" data-lang="ja">
+                        <span class="lang-flag">JP</span>
+                        <span class="lang-name">日本語</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-icon" title="Favorites">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </button>
+            <button class="nav-icon" style="position:relative" title="Shopping Cart">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <span class="cart-badge" style="display:none">0</span>
+            </button>
+
+            <!-- Auth Buttons (shown when logged out) -->
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+                <button class="auth-btn primary" onclick="openModal('registerModal')">Register</button>
+            </div>
+
+            <!-- User Menu (shown when logged in) -->
+            <div class="user-menu">
+                <div class="user-dropdown">
+                    <div class="user-avatar">A</div>
+                    <div class="user-dropdown-menu">
+                        <a href="#">My Account</a>
+                        <a href="#" onclick="openModal('favoritesModal')">Favorites</a>
+                        <a href="#">Order History</a>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+                <span class="user-name">Guest</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>New Arrivals</span>
+            </div>
+            <h1 class="page-title">Latest <em>Creations</em></h1>
+            <p class="page-subtitle">Introducing our newest horological achievements — Winter 2024 Collection</p>
+        </div>
+    </section>
+
+    <!-- Launch Feature -->
+    <section class="launch-hero">
+        <div class="launch-content">
+            <div class="launch-visual">
+                <div class="launch-watch">
+                    <div
+                        style="width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #3a2f18, #1a1205, #080808);border:3px solid rgba(201,168,76,0.4);box-shadow:0 40px 100px rgba(0,0,0,0.7),0 0 60px rgba(201,168,76,0.15);position:relative">
+                        <div
+                            style="position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,0.08) 0%,transparent 50%);border-radius:50%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="launch-info">
+                <div class="section-label">Flagship Launch · Winter 2024</div>
+                <h2 class="section-title" style="font-size:3.5rem">Complication <em>I</em></h2>
+                <div class="divider"></div>
+                <p style="font-size:0.8rem;color:var(--silver);line-height:2;margin-bottom:32px">The culmination of
+                    three years of research and development. Our most advanced perpetual calendar movement, featuring a
+                    groundbreaking 72-hour power reserve and micro-rotor automatic winding.</p>
+
+                <div class="launch-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Case Material</div>
+                        <div class="spec-value">18K Rose Gold</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Movement</div>
+                        <div class="spec-value">Caliber AUR-2024P</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Diameter</div>
+                        <div class="spec-value">42mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Power Reserve</div>
+                        <div class="spec-value">72 Hours</div>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:20px;margin-top:48px">
+                    <a href="#" class="btn-primary"><span>View Details</span> →</a>
+                    <div style="display:flex;flex-direction:column">
+                        <span style="font-family:var(--font-serif);font-size:2rem;color:var(--gold)">€ 48,500</span>
+                        <span style="font-size:0.6rem;color:var(--silver);letter-spacing:0.1em">Available Now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Grid -->
+    <section class="collection-section">
+        <div style="margin-bottom:60px">
+            <div class="section-label">Recently Launched</div>
+            <h2 class="section-title">All New <em>Timepieces</em></h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="products-grid products-grid-full">
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top"></div>
+                        <div class="pw-circle"></div>
+                        <div class="pw-strap pw-strap-bot"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Royal Perpetual</div>
+                    <div class="product-name">Complication I</div>
+                    <div class="product-ref">Ref. AUR-2024-RP-01 · 42mm</div>
+                    <div class="product-price">
+                        <span>€ 48,500</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0a0a0d, #12121a)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #1a1a2a, #050508);border-color:rgba(100,100,200,0.4)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0a0a0d, #12121a)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Midnight Collection</div>
+                    <div class="product-name">Blue Moon Rising</div>
+                    <div class="product-ref">Ref. AUR-2024-MC-25 · 42mm · Limited 25</div>
+                    <div class="product-price">
+                        <span>€ 158,500</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0d1510, #1a2520)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #1a2a20, #080808);border-color:rgba(150,200,150,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0d1510, #1a2520)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Hybrid Perpetual</div>
+                    <div class="product-name">ConnectX Elite</div>
+                    <div class="product-ref">Ref. AUR-2024-HP-02 · 43mm · Smart</div>
+                    <div class="product-price">
+                        <span>€ 38,900</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #1a0d20, #2a1835)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #2a1a30, #080808);border-color:rgba(180,140,220,0.4)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #1a0d20, #2a1835)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Dame Lumière</div>
+                    <div class="product-name">Étoile Diamant</div>
+                    <div class="product-ref">Ref. AUR-2024-DL-03 · 34mm · 48 Diamonds</div>
+                    <div class="product-price">
+                        <span>€ 78,900</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #080808, #1a1a1a)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #2a2a2a, #0a0a0a);border-color:rgba(200,200,200,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #080808, #1a1a1a)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Skeleton Collection</div>
+                    <div class="product-name">Transparent Soul</div>
+                    <div class="product-ref">Ref. AUR-2024-SK-08 · 41mm</div>
+                    <div class="product-price">
+                        <span>€ 65,400</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #1a1205, #2d2010)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #3a2f18, #0d0d0d);border-color:rgba(201,168,76,0.6)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #1a1205, #2d2010)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Platinum Reserve</div>
+                    <div class="product-name">Aurora Borealis</div>
+                    <div class="product-ref">Ref. AUR-2024-PR-10 · 40mm · Limited 10</div>
+                    <div class="product-price">
+                        <span>€ 210,000</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0a0805, #151008)">
+                        </div>
+                        <div class="pw-circle" style="background:radial-gradient(circle at 35% 35%, #352510, #080808)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0a0805, #151008)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Moon Phase</div>
+                    <div class="product-name">Celestial Navigator</div>
+                    <div class="product-ref">Ref. AUR-2024-MP-19 · 42mm</div>
+                    <div class="product-price">
+                        <span>€ 52,300</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge">New</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #080808, #1a1a1a)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #2a2a2a, #080808);border-color:rgba(180,180,180,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #080808, #1a1a1a)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Digital Haute Couture</div>
+                    <div class="product-name">Quantum Titanium</div>
+                    <div class="product-ref">Ref. AUR-2024-DC-08 · 44mm · Smart</div>
+                    <div class="product-price">
+                        <span>€ 45,600</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="section-label" style="justify-content:center">Stay Ahead</div>
+            <h2 class="section-title" style="text-align:center">Be the First<br>to <em>Know</em></h2>
+            <p
+                style="text-align:center;font-size:0.75rem;color:var(--silver);line-height:2;max-width:500px;margin:20px auto 40px">
+                Subscribe to receive exclusive early access to new releases, before they reach our boutiques.</p>
+            <div class="newsletter-form" style="max-width:500px;margin:0 auto">
+                <input type="email" class="newsletter-input" placeholder="Your Email Address">
+                <button class="newsletter-btn">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+                <p class="footer-tagline">Maison Aurum — crafting extraordinary timepieces in Geneva since 1847.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">IG</a>
+                    <a href="#" class="social-btn">FB</a>
+                    <a href="#" class="social-btn">TW</a>
+                    <a href="#" class="social-btn">LN</a>
+                    <a href="#" class="social-btn">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="collections.html#gentlemen">Gentlemen's</a></li>
+                    <li><a href="collections.html#women">Dame Lumière</a></li>
+                    <li><a href="collections.html#limited">Limited Editions</a></li>
+                    <li><a href="collections.html#smart">Smart Luxury</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="#">Bespoke Engraving</a></li>
+                    <li><a href="#">Watch Servicing</a></li>
+                    <li><a href="#">Authenticity Cert.</a></li>
+                    <li><a href="contact.html">Private Consultations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="about.html">Our Heritage</a></li>
+                    <li><a href="about.html#atelier">Atelier Tour</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-legal">© 2024 Maison Aurum SA, Geneva · All rights reserved</div>
+            <div class="payment-icons">
+                <div class="pay-icon">VISA</div>
+                <div class="pay-icon">MC</div>
+                <div class="pay-icon">AMEX</div>
+                <div class="pay-icon">PayPal</div>
+                <div class="pay-icon">Wire</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

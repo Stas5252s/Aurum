@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Sellers — AURUM Fine Watchmaking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="app.js" defer></script>
+
+    <script src="script.js" defer></script>
+
+    <script src="translate-init.js" defer></script>
+
+    <script src="i18n-system.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="bestsellers.html">Best Sellers</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="nav-search">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    style="color:var(--silver)">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" placeholder="Search timepieces...">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <div class="lang-current">
+                    <span class="lang-flag">EN</span>
+                    <span class="lang-code">EN</span>
+                </div>
+                <div class="lang-dropdown">
+                    <div class="lang-option active" data-lang="en">
+                        <span class="lang-flag">EN</span>
+                        <span class="lang-name">English</span>
+                    </div>
+                    <div class="lang-option" data-lang="ru">
+                        <span class="lang-flag">RU</span>
+                        <span class="lang-name">Русский</span>
+                    </div>
+                    <div class="lang-option" data-lang="es">
+                        <span class="lang-flag">ES</span>
+                        <span class="lang-name">Español</span>
+                    </div>
+                    <div class="lang-option" data-lang="fr">
+                        <span class="lang-flag">FR</span>
+                        <span class="lang-name">Français</span>
+                    </div>
+                    <div class="lang-option" data-lang="de">
+                        <span class="lang-flag">DE</span>
+                        <span class="lang-name">Deutsch</span>
+                    </div>
+                    <div class="lang-option" data-lang="zh">
+                        <span class="lang-flag">KO</span>
+                        <span class="lang-name">中文</span>
+                    </div>
+                    <div class="lang-option" data-lang="ja">
+                        <span class="lang-flag">JP</span>
+                        <span class="lang-name">日本語</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-icon" title="Favorites">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </button>
+            <button class="nav-icon" style="position:relative" title="Shopping Cart">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+                <span class="cart-badge" style="display:none">0</span>
+            </button>
+
+            <!-- Auth Buttons (shown when logged out) -->
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+                <button class="auth-btn primary" onclick="openModal('registerModal')">Register</button>
+            </div>
+
+            <!-- User Menu (shown when logged in) -->
+            <div class="user-menu">
+                <div class="user-dropdown">
+                    <div class="user-avatar">A</div>
+                    <div class="user-dropdown-menu">
+                        <a href="#">My Account</a>
+                        <a href="#" onclick="openModal('favoritesModal')">Favorites</a>
+                        <a href="#">Order History</a>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+                <span class="user-name">Guest</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Best Sellers</span>
+            </div>
+            <h1 class="page-title">Most <em>Coveted</em></h1>
+            <p class="page-subtitle">The timepieces our patrons treasure most</p>
+        </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="bestsellers-intro">
+        <div style="max-width:700px;margin:0 auto;text-align:center">
+            <div class="section-label" style="justify-content:center">Icons of Excellence</div>
+            <h2 class="section-title">Proven <em>Favorites</em></h2>
+            <div class="divider" style="margin:20px auto"></div>
+            <p style="font-size:0.78rem;color:var(--silver);line-height:2;letter-spacing:0.03em">These are the
+                timepieces that define Aurum. Each has earned its place through years of devotion from collectors
+                worldwide. Some designs are decades old, yet remain as relevant today as the day they launched.</p>
+        </div>
+    </section>
+
+    <!-- Best Sellers Grid -->
+    <section class="collection-section">
+        <div class="products-grid products-grid-full">
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:var(--gold);color:var(--black)">#1 Bestseller</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0d1520, #1a2535)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #1a2535, #080d12, #080808);border-color:rgba(100,160,220,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0d1520, #1a2535)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Nautique Series</div>
+                    <div class="product-name">Depth Master II</div>
+                    <div class="product-ref">Ref. AUR-2024-NM-07 · 40mm</div>
+                    <div class="product-price">
+                        <span>€ 36,200</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.8);color:var(--black)">Top 5</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top"></div>
+                        <div class="pw-circle" style="background:radial-gradient(circle at 35% 35%, #2a2018, #0d0d0d)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Heritage Series</div>
+                    <div class="product-name">Classic Automatic</div>
+                    <div class="product-ref">Ref. AUR-2024-HS-12 · 40mm</div>
+                    <div class="product-price">
+                        <span>€ 28,900</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.8);color:var(--black)">Top 5</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #1a1008, #2a1810)">
+                        </div>
+                        <div class="pw-circle" style="background:radial-gradient(circle at 35% 35%, #3a2818, #1a1005)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #1a1008, #2a1810)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Chronograph Elite</div>
+                    <div class="product-name">Racing Chrono</div>
+                    <div class="product-ref">Ref. AUR-2024-CE-24 · 44mm</div>
+                    <div class="product-price">
+                        <span>€ 42,800</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #1a1010, #2d1818)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #3a2525, #080808);border-color:rgba(200,150,180,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #1a1010, #2d1818)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Rose Collection</div>
+                    <div class="product-name">Pétale d'Or</div>
+                    <div class="product-ref">Ref. AUR-2024-RC-11 · 32mm</div>
+                    <div class="product-price">
+                        <span>€ 34,500</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0a0805, #151008)">
+                        </div>
+                        <div class="pw-circle" style="background:radial-gradient(circle at 35% 35%, #352510, #080808)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0a0805, #151008)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Moon Phase</div>
+                    <div class="product-name">Celestial Navigator</div>
+                    <div class="product-ref">Ref. AUR-2024-MP-19 · 42mm</div>
+                    <div class="product-price">
+                        <span>€ 52,300</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0d1510, #1a2520)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #1a2a20, #080808);border-color:rgba(150,200,150,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0d1510, #1a2520)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Hybrid Perpetual</div>
+                    <div class="product-name">ConnectX Elite</div>
+                    <div class="product-ref">Ref. AUR-2024-HP-02 · 43mm</div>
+                    <div class="product-price">
+                        <span>€ 38,900</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #f5f3ef, #e8e2d9)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #fff, #f5f3ef);border-color:rgba(201,168,76,0.5)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #f5f3ef, #e8e2d9)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Pearl Collection</div>
+                    <div class="product-name">Nacre Céleste</div>
+                    <div class="product-ref">Ref. AUR-2024-PC-07 · 30mm</div>
+                    <div class="product-price">
+                        <span>€ 41,200</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #080808, #1a1a1a)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #2a2a2a, #0a0a0a);border-color:rgba(200,200,200,0.3)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #080808, #1a1a1a)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Skeleton Collection</div>
+                    <div class="product-name">Transparent Soul</div>
+                    <div class="product-ref">Ref. AUR-2024-SK-08 · 41mm</div>
+                    <div class="product-price">
+                        <span>€ 65,400</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+            <div class="product-card fade-up">
+                <div class="product-badge" style="background:rgba(201,168,76,0.6);color:var(--cream)">Popular</div>
+                <div class="product-img">
+                    <div class="product-watch-visual">
+                        <div class="pw-strap pw-strap-top" style="background:linear-gradient(to top, #0d0820, #18102d)">
+                        </div>
+                        <div class="pw-circle"
+                            style="background:radial-gradient(circle at 35% 35%, #251835, #080808);border-color:rgba(140,100,200,0.4)">
+                        </div>
+                        <div class="pw-strap pw-strap-bot"
+                            style="background:linear-gradient(to bottom, #0d0820, #18102d)"></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection">Mystique Series</div>
+                    <div class="product-name">Amethyst Dream</div>
+                    <div class="product-ref">Ref. AUR-2024-MS-15 · 33mm</div>
+                    <div class="product-price">
+                        <span>€ 56,800</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <div class="action-btn">♡</div>
+                    <div class="action-btn">⊙</div>
+                    <div class="action-btn">⊕</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why These Are Beloved -->
+    <section class="why-beloved">
+        <div style="max-width:900px;margin:0 auto">
+            <div class="section-label" style="justify-content:center">What Makes Them Special</div>
+            <h2 class="section-title" style="text-align:center">Why Our Patrons<br><em>Choose These</em></h2>
+            <div class="divider" style="margin:20px auto 60px"></div>
+
+            <div class="reasons-grid">
+                <div class="reason-card fade-up">
+                    <div class="reason-icon">⌚</div>
+                    <h3>Timeless Design</h3>
+                    <p>These watches transcend trends. Their designs are as elegant today as they will be decades from
+                        now — true heirlooms in the making.</p>
+                </div>
+                <div class="reason-card fade-up">
+                    <div class="reason-icon">⚙</div>
+                    <h3>Proven Movements</h3>
+                    <p>Each bestseller features a movement refined through years of real-world wear. Reliability
+                        measured not in months, but in generations.</p>
+                </div>
+                <div class="reason-card fade-up">
+                    <div class="reason-icon">✦</div>
+                    <h3>Daily Wearability</h3>
+                    <p>Luxury that lives on the wrist. These watches balance precious materials with practical sizing
+                        and water resistance for everyday elegance.</p>
+                </div>
+                <div class="reason-card fade-up">
+                    <div class="reason-icon">◆</div>
+                    <h3>Investment Value</h3>
+                    <p>Limited annual production and enduring demand mean Aurum bestsellers often appreciate. But their
+                        true value is beyond measure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div style="text-align:center;margin-bottom:60px">
+            <div class="section-label" style="justify-content:center">From Our Community</div>
+            <h2 class="section-title" style="text-align:center">Collector <em>Voices</em></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-up">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"I purchased the Depth Master II three years ago. It has been on my wrist
+                    every single day since. Flawless timekeeping, stunning in person, and built like a vault."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div>
+                        <div class="author-name">Marcus Chen</div>
+                        <div class="author-title">Verified Owner · Hong Kong</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The Classic Automatic was my first Aurum. Five watches later, it's still
+                    the one I reach for most often. There's a reason it's a bestseller."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">E</div>
+                    <div>
+                        <div class="author-name">Elizabeth Monroe</div>
+                        <div class="author-title">Verified Owner · New York</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Bought the Racing Chrono as a graduation gift to myself. Ten years later,
+                    it looks as pristine as day one. This is why Aurum commands its premium."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R</div>
+                    <div>
+                        <div class="author-name">Robert Kingsley</div>
+                        <div class="author-title">Verified Owner · Dubai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="section-label" style="justify-content:center">Find Your Icon</div>
+            <h2 class="section-title" style="text-align:center">Not Sure Which<br><em>Suits You?</em></h2>
+            <p
+                style="text-align:center;font-size:0.75rem;color:var(--silver);line-height:2;max-width:500px;margin:20px auto 40px">
+                Our expert consultants can guide you to the perfect timepiece based on your lifestyle, aesthetic, and
+                aspirations. Complimentary, no obligation.</p>
+            <a href="contact.html" class="btn-primary" style="margin:0 auto"><span>Schedule a Consultation</span> →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">AURUM<span>Fine Watchmaking</span></a>
+                <p class="footer-tagline">Maison Aurum — crafting extraordinary timepieces in Geneva since 1847.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">IG</a>
+                    <a href="#" class="social-btn">FB</a>
+                    <a href="#" class="social-btn">TW</a>
+                    <a href="#" class="social-btn">LN</a>
+                    <a href="#" class="social-btn">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="collections.html#gentlemen">Gentlemen's</a></li>
+                    <li><a href="collections.html#women">Dame Lumière</a></li>
+                    <li><a href="collections.html#limited">Limited Editions</a></li>
+                    <li><a href="collections.html#smart">Smart Luxury</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="#">Bespoke Engraving</a></li>
+                    <li><a href="#">Watch Servicing</a></li>
+                    <li><a href="#">Authenticity Cert.</a></li>
+                    <li><a href="contact.html">Private Consultations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="about.html">Our Heritage</a></li>
+                    <li><a href="about.html#atelier">Atelier Tour</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-legal">© 2024 Maison Aurum SA, Geneva · All rights reserved</div>
+            <div class="payment-icons">
+                <div class="pay-icon">VISA</div>
+                <div class="pay-icon">MC</div>
+                <div class="pay-icon">AMEX</div>
+                <div class="pay-icon">PayPal</div>
+                <div class="pay-icon">Wire</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
