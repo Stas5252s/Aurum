@@ -1,7 +1,16 @@
+// ─── Custom Cursor (Desktop Only) ───────────────────
 const cursor = document.getElementById("cursor");
 const cursorRing = document.getElementById("cursorRing");
 
-if (cursor && cursorRing) {
+// Check if device supports hover (i.e., has a mouse)
+const hasHover = window.matchMedia(
+  "(hover: hover) and (pointer: fine)"
+).matches;
+const isDesktop = window.innerWidth > 1024;
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+// Only initialize cursor on desktop devices with mouse
+if (cursor && cursorRing && hasHover && isDesktop && !isTouchDevice) {
   let mouseX = 0,
     mouseY = 0,
     ringX = 0,
@@ -41,6 +50,10 @@ if (cursor && cursorRing) {
       cursorRing.style.height = "36px";
     });
   });
+} else {
+  // Hide cursor elements on mobile/touch devices
+  if (cursor) cursor.style.display = "none";
+  if (cursorRing) cursorRing.style.display = "none";
 }
 
 // ─── Sticky Navigation ──────────────────────────────
